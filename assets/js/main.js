@@ -21,8 +21,7 @@ if (unlock) {
 }
 
 // Continue music on all other pages if it was playing
-// Don't auto-play on video page - video page handles its own music control
-if (music && !isUnlocked2026 && currentPage !== 'video.html') {
+if (music && !isUnlocked2026) {
   music.volume = 0.3;
   
   // Check if music should be playing from localStorage

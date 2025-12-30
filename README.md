@@ -9,7 +9,6 @@ A beautiful, romantic website dedicated to our love story, featuring memories, t
 - **Romantic Animations** - Falling hearts, rose petals, cursor trail, sparkles
 - **Interactive Gallery** - Beautiful masonry layout with 31+ memories
 - **Timeline** - Our journey from 2023 to 2025
-- **Video Section** - Our story compilation
 - **New Year 2026 Wish** - Special page that unlocks on January 1st, 2026
 - **Hidden Messages** - Click around to discover secret love messages
 - **Background Music** - Romantic music that plays throughout
@@ -21,7 +20,6 @@ our-story/
 ├── index.html          # Home page
 ├── timeline.html       # Timeline page
 ├── gallery.html        # Memories gallery
-├── video.html          # Video page
 ├── newyear2026.html    # New Year wish page
 ├── assets/
 │   ├── css/
