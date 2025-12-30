@@ -14,34 +14,6 @@ A beautiful, romantic website dedicated to our love story, featuring memories, t
 - **Hidden Messages** - Click around to discover secret love messages
 - **Background Music** - Romantic music that plays throughout
 
-## 🚀 Deployment on Netlify
-
-### Step 1: Go to Netlify
-1. Visit [netlify.com](https://www.netlify.com)
-2. Sign up/Login with your GitHub account
-
-### Step 2: Deploy from GitHub
-1. Click **"Add new site"** → **"Import an existing project"**
-2. Choose **"Deploy with GitHub"**
-3. Authorize Netlify to access your GitHub
-4. Select repository: **`new-year-2026`**
-5. Click **"Deploy site"**
-
-### Step 3: Configure Build Settings
-- **Build command:** Leave empty (no build needed)
-- **Publish directory:** `our-story` (or leave as root if files are in root)
-- **Base directory:** Leave empty
-
-### Step 4: Deploy!
-Netlify will automatically deploy your site. You'll get a URL like:
-`https://your-site-name.netlify.app`
-
-### Step 5: Custom Domain (Optional)
-1. Go to **Site settings** → **Domain management**
-2. Click **"Add custom domain"**
-3. Enter your domain name
-4. Follow DNS configuration instructions
-
 ## 📁 Project Structure
 
 ```
