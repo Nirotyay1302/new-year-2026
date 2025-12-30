@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Story Video | For Golu 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<button class="back-btn" onclick="location.href='index.html'">← Home</button>
+
+<div class="video-section">
+  <p class="for-golu" style="margin-bottom: 15px;">For Golu 💕</p>
+  <h1 style="margin-bottom: 40px;">Our Story Video</h1>
+  <p style="margin-bottom: 30px; color: #b0b0b0; font-size: 1.1rem;">A compilation of our beautiful moments together, Golu</p>
+  
+  <div class="video-container">
+    <div class="video-wrapper">
+      <!-- Add your video here -->
+      <!-- Option 1: Local video file -->
+      <!-- <video controls>
+        <source src="assets/videos/our-story.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> -->
+      
+      <!-- Option 2: YouTube embed (replace VIDEO_ID with your YouTube video ID) -->
+      <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+      
+      <!-- Option 3: Vimeo embed (replace VIDEO_ID with your Vimeo video ID) -->
+      <!-- <iframe src="https://player.vimeo.com/video/VIDEO_ID" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe> -->
+      
+      <!-- Placeholder message -->
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #888;">
+        <p style="font-size: 1.2rem; margin-bottom: 10px;">📹</p>
+        <p>Add your video here</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">See instructions in the code comments</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Optional: Add multiple videos -->
+  <!--
+  <div class="video-container" style="margin-top: 40px;">
+    <h2 style="margin-bottom: 20px; font-size: 2rem;">More Memories</h2>
+    <div class="video-wrapper">
+      <video controls>
+        <source src="assets/videos/memory1.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  -->
+</div>
+
+<!-- Love Quote Section -->
+<div class="quote-section">
+  <div class="quote-container">
+    <p class="love-quote" id="randomQuote"></p>
+    <p class="quote-author">— Our Story</p>
+  </div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="assets/music/dooron-dooron.mp3">
+</audio>
+
+<script>
+// Video page music control - pause when video plays, resume when leaving
+let music = document.getElementById("bgMusic");
+let videoPlaying = false;
+
+// Function to pause music
+function pauseMusic() {
+  if (music && !music.paused) {
+    // Save current time before pausing
+    localStorage.setItem('musicTime', music.currentTime.toString());
+    music.pause();
+  }
+}
+
+// Function to resume music
+function resumeMusic() {
+  if (music) {
+    let storedTime = localStorage.getItem('musicTime');
+    if (storedTime) {
+      music.currentTime = parseFloat(storedTime);
+    }
+    music.play().catch(()=>{});
+  }
+}
+
+// Check for video elements (local video, YouTube iframe, Vimeo iframe)
+function setupVideoControls() {
+  // Local video element
+  const localVideo = document.querySelector('video');
+  if (localVideo) {
+    localVideo.addEventListener('play', () => {
+      pauseMusic();
+      videoPlaying = true;
+    });
+    localVideo.addEventListener('pause', () => {
+      if (videoPlaying) {
+        resumeMusic();
+        videoPlaying = false;
+      }
+    });
+    localVideo.addEventListener('ended', () => {
+      resumeMusic();
+      videoPlaying = false;
+    });
+  }
+
+  // YouTube iframe
+  const youtubeIframe = document.querySelector('iframe[src*="youtube.com"]');
+  if (youtubeIframe) {
+    // YouTube API would be needed for full control, but we can pause music on page load
+    // and resume when leaving
+    pauseMusic();
+  }
+
+  // Vimeo iframe
+  const vimeoIframe = document.querySelector('iframe[src*="vimeo.com"]');
+  if (vimeoIframe) {
+    pauseMusic();
+  }
+}
+
+// When page loads, pause music if video is present
+document.addEventListener('DOMContentLoaded', () => {
+  setupVideoControls();
+  
+  // If there's any video element, pause music initially
+  const hasVideo = document.querySelector('video') || 
+                   document.querySelector('iframe[src*="youtube.com"]') || 
+                   document.querySelector('iframe[src*="vimeo.com"]');
+  
+  if (hasVideo) {
+    pauseMusic();
+  }
+});
+
+// Resume music when leaving the page
+window.addEventListener('beforeunload', () => {
+  if (videoPlaying) {
+    resumeMusic();
+  }
+});
+
+// Also resume when clicking back button
+document.querySelector('.back-btn')?.addEventListener('click', () => {
+  resumeMusic();
+});
+</script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/romantic-effects.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>For Golu 💕 | Our Love Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <div class="section">
+    <p class="for-golu">For Golu, with all my love 💕</p>
+    <h1>Every love has a story</h1>
+    <p>Ours began in 2023 🖤</p>
+    <p style="font-size: 1rem; color: #888; margin-top: 10px;">A journey through time, memories, and forever</p>
+    <div class="days-counter" id="daysCounter"></div>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+      <button onclick="startJourney()">Start Our Journey</button>
+      <button onclick="location.href='gallery.html'">Our Memories</button>
+      <button onclick="location.href='video.html'">Our Story Video</button>
+      <button onclick="location.href='newyear2026.html'">New Year 2026 Wish</button>
+    </div>
+  </div>
+
+  <!-- Featured Memories Slideshow -->
+  <div class="slideshow-section">
+    <h2 style="margin-bottom: 30px; font-size: 2.5rem;">Featured Memories</h2>
+    <div class="slideshow-container">
+      <div class="slideshow-wrapper">
+        <!-- Add your featured images here -->
+        <div class="slide active">
+          <img src="assets/images/college.png" alt="Memory 1">
+          <div class="slide-caption">Our College Days</div>
+        </div>
+
+          <div class="slide">
+            <img src="assets/images/special.png" alt="Memory 2">
+            <div class="slide-caption">Your first kiss for me</div>
+          </div>
+          <div class="slide">
+            <img src="assets/images/memory1.jpg" alt="Memory 3">
+            <div class="slide-caption">A Beautiful Moment</div>
+          </div>
+          <div class="slide">
+            <img src="assets/images/memory2.jpg" alt="Memory 4">
+            <div class="slide-caption">Together Forever</div>
+          </div>
+          <div class="slide">
+            <img src="assets/images/memory9.webp" alt="memory 5">
+            <div class="slide-caption">Our First puja together</div>
+          </div>
+          <div class="slide">
+            <img src="assets/images/memory25.png" alt="Memory 6">
+            <div class="slide-caption">cute momments</div>
+          </div>
+          <div class="slideshow-controls">
+            <button class="slide-btn prev" onclick="changeSlide(-1)">❮</button>
+            <div class="slide-indicators"></div>
+            <button class="slide-btn next" onclick="changeSlide(1)">❯</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dear Golu Letter -->
+      <div class="love-letter fade-in">
+        <h2>Dear Golu, 💌</h2>
+        <p>
+          If someday we ever forget the little details, I want this place to remember them for us.<br>
+          The way you laugh, the way you look at me when you think I’m not watching, the way just one message from you
+          can fix a heavy day.
+        </p>
+        <p>
+          This isn’t just a website. It’s a small corner of the world where it’s only you and me,<br>
+          where every photo is a “remember when?”, and every page quietly says the same thing:
+        </p>
+        <p class="love-letter-line">
+          I’m grateful for you, I’m proud of us, and I’m still choosing you, Golu — again and again. 💕
+        </p>
+      </div>
+
+      <!-- Love Quote Section -->
+      <div class="quote-section">
+        <div class="quote-container">
+          <p class="love-quote" id="randomQuote"></p>
+          <p class="quote-author">— Our Story</p>
+        </div>
+      </div>
+
+      <audio id="bgMusic" loop>
+        <source src="assets/music/dooron-dooron.mp3" type="audio/mpeg">
+      </audio>
+
+      <script>
+        function startJourney() {
+          let music = document.getElementById("bgMusic");
+          if (music) {
+            music.volume = 0.3;
+            music.play().catch(() => { });
+            // Store that music should be playing
+            localStorage.setItem('musicPlaying', 'true');
+            localStorage.setItem('musicTime', '0');
+          }
+          setTimeout(() => {
+            location.href = 'timeline.html';
+          }, 100);
+        }
+
+        // Slideshow functionality
+        let currentSlide = 0;
+        let slides = document.querySelectorAll('.slide');
+        let indicators = document.querySelector('.slide-indicators');
+
+        // Create indicators
+        if (slides.length > 0 && indicators) {
+          slides.forEach((_, index) => {
+            let dot = document.createElement('span');
+            dot.className = 'indicator';
+            if (index === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(index);
+            indicators.appendChild(dot);
+          });
+        }
+
+        function showSlide(n) {
+          if (slides.length === 0) return;
+
+          slides[currentSlide].classList.remove('active');
+          currentSlide = (n + slides.length) % slides.length;
+          slides[currentSlide].classList.add('active');
+
+          // Update indicators
+          let dots = document.querySelectorAll('.indicator');
+          dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+          });
+        }
+
+        function changeSlide(n) {
+          showSlide(currentSlide + n);
+        }
+
+        function goToSlide(n) {
+          showSlide(n);
+        }
+
+        // Auto-play slideshow
+        if (slides.length > 1) {
+          setInterval(() => {
+            changeSlide(1);
+          }, 5000); // Change slide every 5 seconds
+        }
+      </script>
+      <script src="assets/js/main.js"></script>
+      <script src="assets/js/romantic-effects.js"></script>
+</body>
+
+</html>
